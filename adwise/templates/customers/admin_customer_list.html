@@ -1,0 +1,65 @@
+{% extends "dashboard/base_dashboard.html" %}
+
+{% block title %}All Customers{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3>All Customers</h3>
+        <a href="{% url 'accounts:admindashboard' %}" class="btn btn-outline-light btn-sm">
+            Back
+        </a>
+    </div>
+
+    <div class="card bg-dark text-white border-0">
+        <div class="card-body p-0">
+
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover align-middle text-white mb-0">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Company</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Category</th>
+                            <th>Account Manager</th>
+                            <th>Created At</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for customer in customers %}
+                        <tr>
+                            <td>{{ customer.name }}</td>
+                            <td>
+                                {% if customer.company_name %}
+                                    {{ customer.company_name }}
+                                {% else %}
+                                    <span class="text-muted">-</span>
+                                {% endif %}
+                            </td>
+                            <td>{{ customer.phone }}</td>
+                            <td>{{ customer.email|default:"-" }}</td>
+                            <td>{{ customer.get_customer_category_display }}</td>
+                            <td>{{ customer.account_manager|default:"-" }}</td>
+                            <td>{{ customer.created_at|date:"Y-m-d" }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="7" class="text-center text-muted">
+                                No customers found.
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+{% endblock %}

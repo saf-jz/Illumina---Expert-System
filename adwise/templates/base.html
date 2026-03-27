@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>{% block title %}Illumina Advertising{% endblock %}</title>
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+
+  <!-- Vendor CSS -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Main CSS -->
+  <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+</head>
+
+<body class="index-page">
+
+  <!-- HEADER -->
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container-fluid container-xl d-flex align-items-center">
+
+      <!-- LOGO -->
+      <a href="{% url 'core:home' %}" class="logo d-flex align-items-center me-auto">
+        <h1 class="sitename">ILLUMINA</h1>
+        <span>.</span>
+      </a>
+
+      <!-- NAVBAR -->
+      <nav class="navmenu">
+        <ul>
+
+          <!-- PUBLIC LINKS -->
+          <li><a href="{% url 'core:home' %}">Home</a></li>
+          <li><a href="{% url 'core:home' %}#about">About</a></li>
+          <li><a href="{% url 'core:services' %}">Services</a></li>
+          <li><a href="{% url 'core:home' %}#contact">Contact</a></li>
+          <li><a href="{% url 'accounts:signin' %}">Login</a></li>
+
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+    {% block content %}
+    {% endblock %}
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="footer" class="footer dark-background">
+
+  <div class="container footer-top">
+    <div class="row gy-4">
+
+      <div class="col-lg-4 col-md-6 footer-about">
+        <a href="{% url 'core:home' %}" class="logo d-flex align-items-center">
+          <span class="sitename">Illumina</span>
+        </a>
+
+        <div class="footer-contact pt-3">
+          <p>P.O. Box# 234594</p>
+          <p>Dubai, United Arab Emirates</p>
+          <p class="mt-3"><strong>Phone:</strong> <span>+971 55 567 8006</span></p>
+          <p><strong>Office:</strong> <span>+971 4 2808531</span></p>
+          <p><strong>Email:</strong> <span>bdm@illuminaads.com</span></p>
+        </div>
+
+        <div class="social-links d-flex mt-4">
+          <a href="#"><i class="bi bi-twitter-x"></i></a>
+          <a href="#"><i class="bi bi-facebook"></i></a>
+          <a href="#"><i class="bi bi-instagram"></i></a>
+          <a href="#"><i class="bi bi-linkedin"></i></a>
+        </div>
+      </div>
+
+      <div class="col-lg-2 col-md-3 footer-links">
+        <h4>Useful Links</h4>
+        <ul>
+          <li><a href="{% url 'core:home' %}">Home</a></li>
+          <li><a href="{% url 'core:home' %}#about">About Us</a></li>
+          <li><a href="{% url 'core:services' %}">Services</a></li>
+          <li><a href="{% url 'core:home' %}#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="col-lg-2 col-md-3 footer-links">
+        <h4>Our Services</h4>
+        <ul>
+          <li><a href="{% url 'core:home' %}#services">Signage Solutions</a></li>
+          <li><a href="{% url 'core:home' %}#services">Digital Printing</a></li>
+          <li><a href="{% url 'core:home' %}#services">Event Branding</a></li>
+          <li><a href="{% url 'core:home' %}#services">Vehicle Graphics</a></li>
+        </ul>
+      </div>
+
+      <div class="col-lg-4 col-md-12 footer-newsletter">
+        <h4>Get In Touch</h4>
+        <p>
+          Reach out to Illumina for advertising, branding, signage, printing, and promotional solutions tailored to your business needs.
+        </p>
+        <a href="{% url 'core:home' %}#contact" class="btn-get-started">Send Enquiry</a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="container copyright text-center mt-4">
+    <p>© <span>Copyright</span> <strong class="px-1 sitename">Illumina Advertising LLC</strong> <span>All Rights Reserved</span></p>
+  </div>
+
+</footer>
+
+  <!-- JS FILES -->
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+  <script>
+    AOS.init();
+  </script>
+
+</body>
+</html>

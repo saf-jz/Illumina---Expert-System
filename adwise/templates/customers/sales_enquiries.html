@@ -1,0 +1,87 @@
+{% extends "dashboard/base_dashboard.html" %}
+
+{% block title %}My Enquiries{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between mb-4">
+        <h3>My Enquiries</h3>
+    </div>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} mb-3">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="card bg-dark text-white">
+        <div class="card-body p-0">
+
+            <table class="table table-bordered text-white mb-0">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Message</th>
+                        <th>Status</th>
+                        <th>Customer Match</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for e in enquiries %}
+                    <tr>
+                        <td>{{ e.customer_name }}</td>
+                        <td>{{ e.phone }}</td>
+                        <td>{{ e.email|default:"-" }}</td>
+                        <td>
+                            <span class="text-muted small">
+                                {{ e.message|truncatechars:40 }}
+                            </span>
+                            <a href="{% url 'customers:enquiry_detail' e.id %}"
+                               class="btn btn-sm btn-outline-danger text-white ms-2">
+                                View
+                            </a>
+                        </td>
+                        <td>{{ e.get_status_display }}</td>
+                        <td>
+                            {% if e.customer %}
+                                <span class="badge bg-warning text-dark">Existing Customer</span>
+                                <div class="small mt-1 text-light">
+                                    Manager: {{ e.customer.account_manager|default:"-" }}
+                                </div>
+                            {% else %}
+                                <span class="badge bg-secondary">New Prospect</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if e.status == "ASSIGNED" %}
+                                <a href="{% url 'customers:convert_to_customer' e.id %}" class="btn btn-sm btn-danger">
+                                    Process
+                                </a>
+                            {% elif e.status == "CLOSED" %}
+                                <span class="badge bg-success">Done</span>
+                            {% else %}
+                                <span class="text-muted">-</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="7" class="text-center">No enquiries</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+
+</div>
+{% endblock %}

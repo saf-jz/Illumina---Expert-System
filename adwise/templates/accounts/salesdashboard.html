@@ -1,0 +1,91 @@
+{% extends "dashboard/base_dashboard.html" %}
+
+{% block title %}Salesperson Dashboard{% endblock %}
+
+{% block content %}
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-secondary rounded p-4">
+
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h3 class="mb-0 text-white">Salesperson Dashboard</h3>
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-sm-6 col-xl-4">
+                <a href="{% url 'customers:sales_enquiries' %}" class="text-decoration-none">
+                    <div class="bg-dark rounded d-flex align-items-center justify-content-between p-4">
+                        <i class="fa fa-envelope-open fa-3x text-danger"></i>
+                        <div class="ms-3 text-end">
+                            <p class="mb-2 text-danger">Assigned Enquiries</p>
+                            <h4 class="mb-0 text-white">{{ assigned_count }}</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-sm-6 col-xl-4">
+                <a href="{% url 'customers:customer_list' %}" class="text-decoration-none">
+                    <div class="bg-dark rounded d-flex align-items-center justify-content-between p-4">
+                        <i class="fa fa-users fa-3x text-danger"></i>
+                        <div class="ms-3 text-end">
+                            <p class="mb-2 text-danger">My Customers</p>
+                            <h4 class="mb-0 text-white">{{ customer_count }}</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-sm-6 col-xl-4">
+                <a href="{% url 'quotes:quote_list' %}?status=DRAFT" class="text-decoration-none">
+                    <div class="bg-dark rounded d-flex align-items-center justify-content-between p-4">
+                        <i class="fa fa-file-text fa-3x text-danger"></i>
+                        <div class="ms-3 text-end">
+                            <p class="mb-2 text-danger">Draft Quotes</p>
+                            <h4 class="mb-0 text-white">{{ draft_quote_count }}</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-sm-6 col-xl-4">
+                <a href="{% url 'quotes:quote_list' %}?status=SUBMITTED" class="text-decoration-none">
+                    <div class="bg-dark rounded d-flex align-items-center justify-content-between p-4">
+                        <i class="fa fa-paper-plane fa-3x text-danger"></i>
+                        <div class="ms-3 text-end">
+                            <p class="mb-2 text-danger">Submitted Quotes</p>
+                            <h4 class="mb-0 text-white">{{ submitted_quote_count }}</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-sm-6 col-xl-4">
+                <a href="{% url 'quotes:quote_list' %}?status=APPROVED" class="text-decoration-none">
+                    <div class="bg-dark rounded d-flex align-items-center justify-content-between p-4">
+                        <i class="fa fa-check-circle fa-3x text-danger"></i>
+                        <div class="ms-3 text-end">
+                            <p class="mb-2 text-danger">Approved Quotes</p>
+                            <h4 class="mb-0 text-white">{{ approved_quote_count }}</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-sm-6 col-xl-4">
+                <a href="{% url 'quotes:quote_list' %}?status=REJECTED" class="text-decoration-none">
+                    <div class="bg-dark rounded d-flex align-items-center justify-content-between p-4">
+                        <i class="fa fa-times-circle fa-3x text-danger"></i>
+                        <div class="ms-3 text-end">
+                            <p class="mb-2 text-danger">Rejected Quotes</p>
+                            <h4 class="mb-0 text-white">{{ rejected_quote_count }}</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+{% endblock %}

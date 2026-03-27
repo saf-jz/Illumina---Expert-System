@@ -1,0 +1,63 @@
+{% extends "dashboard/base_dashboard.html" %}
+
+{% block title %}Materials{% endblock %}
+
+{% block content %}
+<div class="container-fluid pt-4 px-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="text-white">Materials</h3>
+        <a href="{% url 'masterdata:material_create' %}" class="btn btn-danger btn-sm">
+            + Add Material
+        </a>
+    </div>
+
+    <div class="bg-secondary rounded p-4">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover align-middle text-white mb-0">
+
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Complexity Score</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for material in materials %}
+                    <tr>
+                        <td>{{ material.name }}</td>
+                        <td>{{ material.complexity_score }}</td>
+                        <td>{{ material.description|truncatewords:10 }}</td>
+
+                        <td>
+                            {% if material.active %}
+                                <span class="badge bg-success">Active</span>
+                            {% else %}
+                                <span class="badge bg-secondary">Inactive</span>
+                            {% endif %}
+                        </td>
+
+                        <td>
+                            <a href="{% url 'masterdata:material_update' material.pk %}" class="btn btn-outline-danger
+                             btn-sm text-white">
+                                Edit
+                            </a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5" class="text-center">No materials found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

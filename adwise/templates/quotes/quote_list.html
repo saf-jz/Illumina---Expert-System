@@ -1,0 +1,111 @@
+{% extends "dashboard/base_dashboard.html" %}
+
+{% block title %}Quotes{% endblock %}
+
+{% block content %}
+<div class="container-fluid pt-4 px-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="text-white">
+            {% if request.user.role == "ADMIN" %}
+                Submitted Quotes
+            {% else %}
+                {% if selected_status == "DRAFT" %}
+                    Draft Quotes
+                {% elif selected_status == "SUBMITTED" %}
+                    Submitted Quotes
+                {% elif selected_status == "APPROVED" %}
+                    Approved Quotes
+                {% elif selected_status == "REJECTED" %}
+                    Rejected Quotes
+                {% else %}
+                    My Quotes
+                {% endif %}
+            {% endif %}
+        </h3>
+
+        {% if request.user.role == "SALESPERSON" %}
+            <a href="{% url 'quotes:quote_create' %}" class="btn btn-danger btn-sm">
+                + Create Quote
+            </a>
+        {% endif %}
+    </div>
+
+    <div class="bg-secondary rounded p-4">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover align-middle text-white mb-0">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Customer</th>
+                        <th>Service Type</th>
+                        <th>Material</th>
+                        <th>Quantity</th>
+                        <th>Urgency</th>
+                        <th>Status</th>
+                        <th>Created By</th>
+                        <th>Created At</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for quote in quotes %}
+                    <tr>
+                        <td>{{ quote.id }}</td>
+                        <td>{{ quote.customer }}</td>
+                        <td>{{ quote.service_type|default:"Unknown / Not sure" }}</td>
+                        <td>{{ quote.material|default:"Unknown / Not sure" }}</td>
+                        <td>{{ quote.quantity }}</td>
+                        <td>{{ quote.get_urgency_display }}</td>
+                        <td>
+                            {% if quote.status == "DRAFT" %}
+                                <span class="badge bg-secondary">Draft</span>
+                            {% elif quote.status == "SUBMITTED" %}
+                                <span class="badge bg-info">Submitted</span>
+                            {% elif quote.status == "UNDER_REVIEW" %}
+                                <span class="badge bg-warning text-dark">Under Review</span>
+                            {% elif quote.status == "APPROVED" %}
+                                <span class="badge bg-success">Approved</span>
+                            {% elif quote.status == "REJECTED" %}
+                                <span class="badge bg-danger">Rejected</span>
+                            {% else %}
+                                <span class="badge bg-secondary">{{ quote.status }}</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ quote.created_by }}</td>
+                        <td>{{ quote.created_at|date:"d M Y, h:i A" }}</td>
+                        <td>
+                            <div class="d-flex gap-2 flex-wrap">
+                                <a href="{% url 'quotes:quote_detail' quote.pk %}" class="btn btn-outline-danger btn-sm text-white">
+                                    View
+                                </a>
+
+                                {% if request.user.role == "SALESPERSON" and quote.status == "DRAFT" %}
+                                    <a href="{% url 'quotes:quote_update' quote.pk %}" class="btn btn-outline-danger btn-sm text-white">
+                                        Edit
+                                    </a>
+
+                                    <form method="post" action="{% url 'quotes:quote_submit' quote.pk %}" class="d-inline">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-outline-danger btn-sm text-white">
+                                            Submit
+                                        </button>
+                                    </form>
+                                {% endif %}
+                            </div>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="10" class="text-center">No quotes found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

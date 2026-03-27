@@ -1,0 +1,65 @@
+{% extends "dashboard/base_dashboard.html" %}
+
+{% block title %}Enquiry Details{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3>Enquiry Details</h3>
+        <a href="javascript:history.back()" class="btn btn-outline-light btn-sm">
+            Back
+        </a>
+    </div>
+
+    <div class="card bg-dark text-white border-0">
+        <div class="card-body p-4">
+
+            <p><strong>Name:</strong> {{ enquiry.customer_name }}</p>
+            <p><strong>Email:</strong> {{ enquiry.email|default:"-" }}</p>
+            <p><strong>Phone:</strong> {{ enquiry.phone }}</p>
+
+            <hr>
+
+            <p><strong>Message:</strong></p>
+            <p class="text-light">{{ enquiry.message }}</p>
+
+            <hr>
+
+            <p><strong>Status:</strong> {{ enquiry.get_status_display }}</p>
+            <p><strong>Assigned To:</strong> {{ enquiry.assigned_to|default:"-" }}</p>
+
+            {% if enquiry.customer %}
+                <hr>
+                <p><strong>Linked Customer:</strong> {{ enquiry.customer.name }}</p>
+                <p><strong>Customer Account Manager:</strong> {{ enquiry.customer.account_manager|default:"-" }}</p>
+            {% else %}
+                <hr>
+                <p><strong>Linked Customer:</strong> <span class="text-muted">No linked customer</span></p>
+            {% endif %}
+
+
+            <hr>
+
+            <div class="d-flex gap-2">
+                {% if enquiry.status == "NEW" and request.user.role == "ADMIN" %}
+                    <a href="{% url 'customers:enquiry_assign' enquiry.id %}" class="btn btn-primary btn-sm">
+                        Assign
+                    </a>
+                {% elif enquiry.status == "ASSIGNED" and request.user.role == "ADMIN" %}
+                    <a href="{% url 'customers:enquiry_assign' enquiry.id %}" class="btn btn-sm btn-warning">
+                        Reassign
+                    </a>
+                    <a href="{% url 'customers:enquiry_close' enquiry.id %}" class="btn btn-sm btn-success">
+                        Close
+                    </a>
+                {% elif enquiry.status == "CLOSED" %}
+                    <span class="badge bg-success">Closed</span>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+
+</div>
+{% endblock %}

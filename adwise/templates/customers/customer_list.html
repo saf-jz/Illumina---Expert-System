@@ -1,0 +1,78 @@
+{% extends "dashboard/base_dashboard.html" %}
+
+{% block title %}My Customers{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3>My Customers</h3>
+        <a href="{% url 'customers:customer_create' %}" class="btn btn-danger btn-sm">
+            + Add Customer
+        </a>
+    </div>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} mb-3">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="card bg-dark text-white border-0">
+        <div class="card-body p-0">
+
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover align-middle text-white mb-0">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Company</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Category</th>
+                            <th>Created At</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for customer in customers %}
+                        <tr>
+                            <td>{{ customer.name }}</td>
+                            <td>
+                                {% if customer.company_name %}
+                                    {{ customer.company_name }}
+                                {% else %}
+                                    <span class="text-muted">-</span>
+                                {% endif %}
+                            </td>
+                            <td>{{ customer.phone }}</td>
+                            <td>{{ customer.email }}</td>
+                            <td>{{ customer.get_customer_category_display }}</td>
+                            <td>{{ customer.created_at|date:"Y-m-d" }}</td>
+                            <td>
+                                <a href="{% url 'customers:customer_update' customer.id %}"
+                                   class="btn btn-sm btn-outline-danger">
+                                    Edit
+                                </a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="7" class="text-center text-muted">
+                                No customers yet.
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,179 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Services - Illumina Advertising{% endblock %}
+
+{% block content %}
+
+<div class="page-title dark-background">
+  <div class="container">
+    <nav class="breadcrumbs">
+      <ol>
+        <li><a href="{% url 'core:home' %}">Home</a></li>
+        <li class="current">Services</li>
+      </ol>
+    </nav>
+    <h1>Our Services</h1>
+  </div>
+</div>
+
+<section id="service-details" class="service-details section">
+
+  <div class="container">
+    <div class="row gy-5">
+
+      <!-- LEFT SIDEBAR -->
+      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="service-box">
+          <h4>Services List</h4>
+          <div class="services-list">
+            <a href="#signages"><i class="bi bi-arrow-right-circle"></i><span>Signages</span></a>
+            <a href="#event-branding"><i class="bi bi-arrow-right-circle"></i><span>Event Branding</span></a>
+            <a href="#window-display"><i class="bi bi-arrow-right-circle"></i><span>Window Display</span></a>
+            <a href="#digital-display"><i class="bi bi-arrow-right-circle"></i><span>Digital Display</span></a>
+            <a href="#display-stands"><i class="bi bi-arrow-right-circle"></i><span>Display Stands</span></a>
+            <a href="#vehicle-graphics"><i class="bi bi-arrow-right-circle"></i><span>Vehicle Graphics</span></a>
+            <a href="#digital-printing"><i class="bi bi-arrow-right-circle"></i><span>Digital Printing</span></a>
+            <a href="#corporate-gifts"><i class="bi bi-arrow-right-circle"></i><span>Corporate &amp; Promotional Gift Items</span></a>
+          </div>
+        </div>
+
+        <div class="service-box">
+          <h4>Download Brochure</h4>
+          <div class="download-catalog">
+            <a href="#"><i class="bi bi-filetype-pdf"></i><span>Company Brochure PDF</span></a>
+          </div>
+        </div>
+
+        <div class="help-box d-flex flex-column justify-content-center align-items-center">
+          <i class="bi bi-headset help-icon"></i>
+          <h4>Have a Question?</h4>
+          <p class="d-flex align-items-center mt-2 mb-0">
+            <i class="bi bi-telephone me-2"></i>
+            <span>+971 55 567 8006</span>
+          </p>
+          <p class="d-flex align-items-center mt-1 mb-0">
+            <i class="bi bi-telephone me-2"></i>
+            <span>+971 4 2808531</span>
+          </p>
+          <p class="d-flex align-items-center mt-1 mb-0">
+            <i class="bi bi-envelope me-2"></i>
+            <a href="mailto:bdm@illuminaads.com">bdm@illuminaads.com</a>
+          </p>
+        </div>
+
+      </div>
+
+      <!-- RIGHT CONTENT -->
+      <div class="col-lg-8 ps-lg-5" data-aos="fade-up" data-aos-delay="200">
+
+        <img src="{% static 'assets/img/services/services-cover.jpg' %}" alt="Illumina Services" class="img-fluid services-img mb-4">
+
+        <h3>Advertising, Printing, and Branding Solutions for Modern Businesses</h3>
+
+        <p>
+          Started in 2008, Illumina LLC is a Dubai-based advertising company offering a wide range of services
+          in advertisement and digital printing. With extensive experience in design, production, and branding,
+          the company supports businesses with creative and practical visual solutions.
+        </p>
+
+        <ul>
+          <li><i class="bi bi-check-circle"></i> <span>Signages, LED signs, acrylic displays, and advertising boards</span></li>
+          <li><i class="bi bi-check-circle"></i> <span>Event branding, exhibition stands, and display solutions</span></li>
+          <li><i class="bi bi-check-circle"></i> <span>Vehicle graphics, digital printing, and promotional gift items</span></li>
+        </ul>
+
+        <p>
+          Illumina’s services include large format digital printing, window displays, digital displays,
+          display stands, vehicle graphics, fabric printing, and corporate promotional items. These services
+          are designed to help businesses improve visibility, strengthen branding, and create more effective
+          customer engagement.
+        </p>
+
+        <p>
+          The company focuses on quality, efficiency, and teamwork, using modern technologies and experienced
+          professionals to deliver projects with reliable standards and timely execution.
+        </p>
+
+        <section id="signages" class="mb-5 pt-4">
+          <img src="{% static 'assets/img/services/signages.jpg' %}" alt="Signages" class="img-fluid rounded mb-3">
+          <h3>Signages</h3>
+          <p>
+            Illumina provides indoor and outdoor signage solutions including LED signs, acrylic displays,
+            sign boards, and advertising boards that help businesses improve visibility and communicate
+            their brand more effectively.
+          </p>
+        </section>
+
+        <section id="event-branding" class="mb-5 pt-4">
+          <img src="{% static 'assets/img/services/event-branding.jpg' %}" alt="Event Branding" class="img-fluid rounded mb-3">
+          <h3>Event Branding</h3>
+          <p>
+            Event branding services support exhibitions, launches, corporate events, and promotional campaigns
+            through coordinated visual materials that create a professional and memorable brand presence.
+          </p>
+        </section>
+
+        <section id="window-display" class="mb-5 pt-4">
+          <img src="{% static 'assets/img/services/window-display.jpg' %}" alt="Window Display" class="img-fluid rounded mb-3">
+          <h3>Window Display</h3>
+          <p>
+            Window display solutions are designed to attract customer attention and improve storefront presentation,
+            helping businesses create a stronger first impression and highlight their products effectively.
+          </p>
+        </section>
+
+        <section id="digital-display" class="mb-5 pt-4">
+          <img src="{% static 'assets/img/services/digital-display.jpg' %}" alt="Digital Display" class="img-fluid rounded mb-3">
+          <h3>Digital Display</h3>
+          <p>
+            Digital display services provide modern visual communication tools for promotions and advertising,
+            making business messages more dynamic, visible, and engaging in commercial environments.
+          </p>
+        </section>
+
+        <section id="display-stands" class="mb-5 pt-4">
+          <img src="{% static 'assets/img/services/display-stands.jpg' %}" alt="Display Stands" class="img-fluid rounded mb-3">
+          <h3>Display Stands</h3>
+          <p>
+            Display stands are produced for exhibitions, retail spaces, and product promotions, helping businesses
+            present advertising materials in a clear, organized, and attractive way.
+          </p>
+        </section>
+
+        <section id="vehicle-graphics" class="mb-5 pt-4">
+          <img src="{% static 'assets/img/services/vehicle-graphics.jpg' %}" alt="Vehicle Graphics" class="img-fluid rounded mb-3">
+          <h3>Vehicle Graphics</h3>
+          <p>
+            Vehicle graphics transform company cars, vans, and other vehicles into mobile advertisements,
+            expanding brand visibility beyond physical business locations.
+          </p>
+        </section>
+
+        <section id="digital-printing" class="mb-5 pt-4">
+          <img src="{% static 'assets/img/services/digital-printing.jpg' %}" alt="Digital Printing" class="img-fluid rounded mb-3">
+          <h3>Digital Printing</h3>
+          <p>
+            Digital printing includes banners, posters, promotional materials, and other large format outputs,
+            produced with speed, consistency, and modern printing technology.
+          </p>
+        </section>
+
+        <section id="corporate-gifts" class="mb-5 pt-4">
+          <img src="{% static 'assets/img/services/corporate-gifts.jpg' %}" alt="Corporate and Promotional Gift Items" class="img-fluid rounded mb-3">
+          <h3>Corporate &amp; Promotional Gift Items</h3>
+          <p>
+            Customized branded gift items and promotional products help businesses support marketing campaigns,
+            improve brand recall, and strengthen professional visibility during events and promotions.
+          </p>
+        </section>
+
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+{% endblock %}

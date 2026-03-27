@@ -1,0 +1,84 @@
+{% extends "dashboard/base_dashboard.html" %}
+
+{% block title %}Enquiries{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h3 class="p-4">Enquiries</h3>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover align-middle text-white">
+        <thead>
+            <tr>
+                <th>Customer Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Message</th>
+                <th>Status</th>
+                <th>Assigned To</th>
+                <th>Customer Match</th>
+                <th>Created At</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for enquiry in enquiries %}
+            <tr>
+                <td>{{ enquiry.customer_name }}</td>
+                <td>{{ enquiry.phone }}</td>
+                <td>{{ enquiry.email|default:"-" }}</td>
+                <td>
+                    <span class="text-muted small">
+                        {{ enquiry.message|truncatechars:40 }}
+                    </span>
+                    <a href="{% url 'customers:enquiry_detail' enquiry.id %}"
+                       class="btn btn-sm btn-outline-danger text-white ms-2">
+                        View
+                    </a>
+                </td>
+                <td>{{ enquiry.get_status_display }}</td>
+                <td>{{ enquiry.assigned_to|default:"-" }}</td>
+                <td>
+                    {% if enquiry.customer %}
+                        <span class="badge bg-warning text-dark">Existing Customer</span>
+                        <div class="small mt-1 text-light">
+                            Manager: {{ enquiry.customer.account_manager|default:"-" }}
+                        </div>
+                    {% else %}
+                        <span class="badge bg-secondary">New Prospect</span>
+                    {% endif %}
+                </td>
+                <td>{{ enquiry.created_at|date:"d M Y, h:i A" }}</td>
+                <td>
+                    {% if enquiry.status == "NEW" %}
+                        <a href="{% url 'customers:enquiry_assign' enquiry.id %}" class="btn btn-primary btn-sm">
+                            Assign
+                        </a>
+
+                    {% elif enquiry.status == "ASSIGNED" %}
+                        <div class="d-flex gap-2">
+                            <a href="{% url 'customers:enquiry_assign' enquiry.id %}" class="btn btn-sm reassign-btn">
+                                Reassign
+                            </a>
+
+                            <a href="{% url 'customers:enquiry_close' enquiry.id %}" class="btn btn-sm reassign-btn">
+                                Close
+                            </a>
+                        </div>
+
+                    {% else %}
+                        <span class="badge bg-success">Closed</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="9" class="text-center">No enquiries found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

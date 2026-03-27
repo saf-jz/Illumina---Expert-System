@@ -1,0 +1,352 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Home - Illumina{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section id="hero" class="hero section">
+  <img src="{% static 'assets/img/hero-bg.jpg' %}" alt="" data-aos="fade-in">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <h2 data-aos="fade-up" data-aos-delay="100">
+          Brief. Budget. On Time.
+        </h2>
+        <p data-aos="fade-up" data-aos-delay="200">
+          Delivering professional advertising and digital printing solutions across Dubai since 2008.
+        </p>
+        <div class="d-flex mt-4" data-aos="fade-up" data-aos-delay="300">
+          <a href="#services" class="btn-get-started">Our Services</a>
+          <a href="#contact" class="btn-watch-video d-flex align-items-center ms-3">
+            <i class="bi bi-chat-dots"></i><span>Send Enquiry</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="about section section-bg dark-background">
+
+  <div class="container position-relative">
+
+    <div class="row gy-5">
+
+      <div class="content col-xl-5 d-flex flex-column" data-aos="fade-up" data-aos-delay="100">
+        <h3>About Illumina</h3>
+        <p>
+          Established in 2008, Illumina LLC is a Dubai-based advertising and digital printing company
+          delivering creative, practical, and high-quality branding solutions for businesses across different industries.
+        </p>
+        <p>
+          With years of industry experience, we specialize in helping clients strengthen their visual presence through
+          signage, printing, event branding, vehicle graphics, and display solutions.
+        </p>
+        <a href="#services" class="about-btn align-self-center align-self-xl-start">
+          <span>Explore Services</span>
+          <i class="bi bi-chevron-right"></i>
+        </a>
+      </div>
+
+      <div class="col-xl-7" data-aos="fade-up" data-aos-delay="200">
+        <div class="row gy-4">
+
+          <div class="col-md-6 icon-box position-relative">
+            <i class="bi bi-signpost-split"></i>
+            <h4>Signage Solutions</h4>
+            <p>Indoor and outdoor signage including LED signs, acrylic displays, and branded boards.</p>
+          </div>
+
+          <div class="col-md-6 icon-box position-relative">
+            <i class="bi bi-printer"></i>
+            <h4>Digital Printing</h4>
+            <p>Large format and promotional printing produced with quality, consistency, and speed.</p>
+          </div>
+
+          <div class="col-md-6 icon-box position-relative">
+            <i class="bi bi-megaphone"></i>
+            <h4>Event Branding</h4>
+            <p>Creative branding and production support for exhibitions, launches, and corporate events.</p>
+          </div>
+
+          <div class="col-md-6 icon-box position-relative">
+            <i class="bi bi-car-front"></i>
+            <h4>Vehicle Graphics</h4>
+            <p>Custom graphics that transform company vehicles into strong mobile advertising assets.</p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- SERVICES -->
+<!-- Services Section -->
+<section id="services" class="services section section-bg dark-background">
+
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Services</h2>
+    <p>Comprehensive advertising and printing solutions tailored for businesses.</p>
+  </div>
+
+  <div class="container">
+    <div class="row gy-4">
+
+      <!-- Signages -->
+      <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="service-item d-flex position-relative h-100">
+          <i class="bi bi-signpost-split icon flex-shrink-0"></i>
+          <div>
+            <h4 class="title">
+              <a href="{% url 'core:services' %}" class="stretched-link">Signages</a>
+            </h4>
+            <p class="description">
+              Indoor and outdoor signage including LED signs, acrylic displays, and advertising boards.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Event Branding -->
+      <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+        <div class="service-item d-flex position-relative h-100">
+          <i class="bi bi-megaphone icon flex-shrink-0"></i>
+          <div>
+            <h4 class="title">
+              <a href="{% url 'core:services' %}" class="stretched-link">Event Branding</a>
+            </h4>
+            <p class="description">
+              Creative branding solutions for exhibitions, corporate events, and campaigns.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Window Display -->
+      <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+        <div class="service-item d-flex position-relative h-100">
+          <i class="bi bi-window icon flex-shrink-0"></i>
+          <div>
+            <h4 class="title">
+              <a href="{% url 'core:services' %}" class="stretched-link">Window Display</a>
+            </h4>
+            <p class="description">
+              Attractive storefront displays designed to grab attention and boost engagement.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Digital Display -->
+      <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
+        <div class="service-item d-flex position-relative h-100">
+          <i class="bi bi-display icon flex-shrink-0"></i>
+          <div>
+            <h4 class="title">
+              <a href="{% url 'core:services' %}" class="stretched-link">Digital Display</a>
+            </h4>
+            <p class="description">
+              Modern digital screens and display solutions for advertising and communication.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Display Stands -->
+      <div class="col-md-6" data-aos="fade-up" data-aos-delay="500">
+        <div class="service-item d-flex position-relative h-100">
+          <i class="bi bi-easel icon flex-shrink-0"></i>
+          <div>
+            <h4 class="title">
+              <a href="{% url 'core:services' %}" class="stretched-link">Display Stands</a>
+            </h4>
+            <p class="description">
+              High-quality stands for exhibitions, retail setups, and promotional displays.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vehicle Graphics -->
+      <div class="col-md-6" data-aos="fade-up" data-aos-delay="600">
+        <div class="service-item d-flex position-relative h-100">
+          <i class="bi bi-car-front icon flex-shrink-0"></i>
+          <div>
+            <h4 class="title">
+              <a href="{% url 'core:services' %}" class="stretched-link">Vehicle Graphics</a>
+            </h4>
+            <p class="description">
+              Turn vehicles into mobile advertisements with custom branding graphics.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Digital Printing -->
+      <div class="col-md-6" data-aos="fade-up" data-aos-delay="700">
+        <div class="service-item d-flex position-relative h-100">
+          <i class="bi bi-printer icon flex-shrink-0"></i>
+          <div>
+            <h4 class="title">
+              <a href="{% url 'core:services' %}" class="stretched-link">Digital Printing</a>
+            </h4>
+            <p class="description">
+              Large format printing including banners, posters, and promotional materials.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Corporate Gifts -->
+      <div class="col-md-6" data-aos="fade-up" data-aos-delay="800">
+        <div class="service-item d-flex position-relative h-100">
+          <i class="bi bi-gift icon flex-shrink-0"></i>
+          <div>
+            <h4 class="title">
+              <a href="{% url 'core:services' %}" class="stretched-link">Corporate &amp; Promotional Gifts</a>
+            </h4>
+            <p class="description">
+              Customized branded products to support marketing campaigns and brand visibility.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+
+<!-- CONTACT -->
+<section id="contact" class="contact section">
+
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Contact</h2>
+    <p>Reach out to us for your advertising and printing needs.</p>
+  </div>
+
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+    <div class="row gy-4">
+
+      <div class="col-lg-6">
+        <div class="row gy-4">
+
+          <div class="col-lg-12">
+            <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="200">
+              <i class="bi bi-geo-alt"></i>
+              <h3>Address</h3>
+              <p>Dubai, UAE</p>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="300">
+              <i class="bi bi-telephone"></i>
+              <h3>Call Us</h3>
+              <p>+971 55 567 8006</p>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="400">
+              <i class="bi bi-envelope"></i>
+              <h3>Email Us</h3>
+              <p>info@illuminaads.com</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <form method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="500">
+          {% csrf_token %}
+
+          <div class="row gy-4">
+
+            <div class="col-md-6">
+              <input
+                type="text"
+                name="customer_name"
+                class="form-control"
+                placeholder="Name"
+                value="{{ form.customer_name.value|default:'' }}"
+                required
+              >
+              {% if form.customer_name.errors %}
+                <div class="text-danger mt-1">{{ form.customer_name.errors }}</div>
+              {% endif %}
+            </div>
+
+            <div class="col-md-6">
+              <input
+                type="text"
+                name="phone"
+                class="form-control"
+                placeholder="Phone Number"
+                value="{{ form.phone.value|default:'' }}"
+                required
+              >
+              {% if form.phone.errors %}
+                <div class="text-danger mt-1">{{ form.phone.errors }}</div>
+              {% endif %}
+            </div>
+
+            <div class="col-md-12">
+              <input
+                type="email"
+                name="email"
+                class="form-control"
+                placeholder="Email"
+                value="{{ form.email.value|default:'' }}"
+              >
+              {% if form.email.errors %}
+                <div class="text-danger mt-1">{{ form.email.errors }}</div>
+              {% endif %}
+            </div>
+
+            <div class="col-md-12">
+              <textarea
+                class="form-control"
+                name="message"
+                rows="5"
+                placeholder="Enquiry"
+                required
+              >{{ form.message.value|default:'' }}</textarea>
+              {% if form.message.errors %}
+                <div class="text-danger mt-1">{{ form.message.errors }}</div>
+              {% endif %}
+            </div>
+
+            <div class="col-md-12 text-center">
+              {% if messages %}
+                {% for message in messages %}
+                  <div class="sent-message d-block">{{ message }}</div>
+                {% endfor %}
+              {% endif %}
+
+              <button type="submit">Send Enquiry</button>
+            </div>
+
+          </div>
+        </form>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+{% endblock %}

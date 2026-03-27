@@ -1,0 +1,77 @@
+{% extends "dashboard/base_dashboard.html" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-secondary rounded p-4">
+
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h3 class="mb-0 text-white">Admin Dashboard</h3>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-sm-6 col-xl-3">
+                <a href="{% url 'customers:enquiry_list' %}?status=NEW" class="text-decoration-none">
+                    <div class="bg-dark rounded d-flex align-items-center justify-content-between p-4">
+                        <i class="fa fa-envelope fa-3x text-danger"></i>
+                        <div class="ms-3 text-end">
+                            <p class="mb-2 text-danger">New Enquiries</p>
+                            <h4 class="mb-0 text-white">{{ new_count }}</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-sm-6 col-xl-3">
+                <a href="{% url 'customers:enquiry_list' %}?status=ASSIGNED" class="text-decoration-none">
+                    <div class="bg-dark rounded d-flex align-items-center justify-content-between p-4">
+                        <i class="fa fa-user-check fa-3x text-danger"></i>
+                        <div class="ms-3 text-end">
+                            <p class="mb-2 text-danger">Assigned</p>
+                            <h4 class="mb-0 text-white">{{ assigned_count }}</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-sm-6 col-xl-3">
+                <a href="{% url 'customers:enquiry_list' %}?status=CLOSED" class="text-decoration-none">
+                    <div class="bg-dark rounded d-flex align-items-center justify-content-between p-4">
+                        <i class="fa fa-check-circle fa-3x text-danger"></i>
+                        <div class="ms-3 text-end">
+                            <p class="mb-2 text-danger">Closed</p>
+                            <h4 class="mb-0 text-white">{{ closed_count }}</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-sm-6 col-xl-3">
+                <a href="{% url 'customers:admin_customer_list' %}" class="text-decoration-none">
+                    <div class="bg-dark rounded d-flex align-items-center justify-content-between p-4">
+                        <i class="fa fa-users fa-3x text-danger"></i>
+                        <div class="ms-3 text-end">
+                            <p class="mb-2 text-danger">Customers</p>
+                            <h4 class="mb-0 text-white">{{ customer_count }}</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-sm-6 col-xl-3">
+                <a href="{% url 'quotes:quote_list' %}" class="text-decoration-none">
+                    <div class="bg-dark rounded d-flex align-items-center justify-content-between p-4">
+                        <i class="fa fa-file-alt fa-3x text-danger"></i>
+                        <div class="ms-3 text-end">
+                            <p class="mb-2 text-danger">Pending Review</p>
+                            <h4 class="mb-0 text-white">{{ submitted_quote_count }}</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

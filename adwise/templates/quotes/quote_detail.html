@@ -1,0 +1,221 @@
+{% extends "dashboard/base_dashboard.html" %}
+
+{% block title %}Quote Details{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3>Quote Details</h3>
+        <a href="{% url 'quotes:quote_list' %}" class="btn btn-outline-light btn-sm">Back to Quotes</a>
+    </div>
+
+    <div class="card bg-dark text-white border-0 mb-4">
+        <div class="card-body">
+            <h4 class="mb-3">Quote Information</h4>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <strong>Customer:</strong><br>
+                    {{ quote.customer }}
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <strong>Status:</strong><br>
+                    {{ quote.get_status_display }}
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <strong>Service Type:</strong><br>
+                    {{ quote.service_type|default:"Not specified" }}
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <strong>Material:</strong><br>
+                    {{ quote.material|default:"Not specified" }}
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <strong>Quantity:</strong><br>
+                    {{ quote.quantity }}
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <strong>Size:</strong><br>
+                    {% if quote.size %}
+                        {{ quote.get_size_display }}
+                    {% else %}
+                        Not specified
+                    {% endif %}
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <strong>Urgency:</strong><br>
+                    {{ quote.get_urgency_display }}
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <strong>Installation Required:</strong><br>
+                    {% if quote.installation_required %}Yes{% else %}No{% endif %}
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <strong>Customer Category:</strong><br>
+                    {{ quote.get_customer_category_display }}
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <strong>Created By:</strong><br>
+                    {{ quote.created_by }}
+                </div>
+
+                <div class="col-12 mb-3">
+                    <strong>Job Description:</strong><br>
+                    {{ quote.job_description }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card bg-dark text-white border-0 mb-4">
+        <div class="card-body">
+            <h4 class="mb-3">System Recommendation</h4>
+
+            {% if recommendation %}
+                {% if recommendation.recommendation_type == "PRELIMINARY" %}
+                    <div class="alert alert-warning">
+                        <strong>Preliminary Recommendation</strong> - Admin review required due to unknown inputs.
+                    </div>
+                {% else %}
+                    <div class="alert alert-success">
+                        <strong>System Recommendation</strong> generated successfully.
+                    </div>
+                {% endif %}
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <strong>Price Tier:</strong><br>
+                        {{ recommendation.system_price_tier }}
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <strong>Margin Range:</strong><br>
+                        {{ recommendation.system_margin_range }}
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <strong>Approval Recommendation:</strong><br>
+                        {{ recommendation.system_approval_recommendation }}
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <strong>Recommendation Type:</strong><br>
+                        {{ recommendation.get_recommendation_type_display }}
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <strong>Total Score:</strong><br>
+                        {{ recommendation.total_score }}
+                    </div>
+
+                    <div class="col-12 mb-3">
+                        <strong>Explanation:</strong><br>
+                        {{ recommendation.system_explanation }}
+                    </div>
+                </div>
+            {% else %}
+                <p class="mb-0 text-muted">No system recommendation generated yet.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="card bg-dark text-white border-0 mb-4">
+        <div class="card-body">
+            <h4 class="mb-3">Admin Decision</h4>
+
+            {% if request.user.role == "ADMIN" and quote.status == "SUBMITTED" %}
+                <form method="post">
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+                        <label for="admin_decision" class="form-label">Decision</label>
+                        <select name="admin_decision" id="admin_decision" class="form-select">
+                            <option value="">Select decision</option>
+                            <option value="APPROVED">Approve</option>
+                            <option value="REJECTED">Reject</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="admin_notes" class="form-label">Admin Notes</label>
+                        <textarea
+                            name="admin_notes"
+                            id="admin_notes"
+                            rows="4"
+                            class="form-control"
+                            placeholder="Enter decision notes or comments..."
+                        ></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-danger btn-sm">
+                        Save Decision
+                    </button>
+                </form>
+
+                {% if admin_decision %}
+                    <hr>
+                    <div class="row mt-3">
+                        <div class="col-md-6 mb-3">
+                            <strong>Current Decision:</strong><br>
+                            {{ admin_decision.get_admin_decision_display }}
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <strong>Reviewed By:</strong><br>
+                            {{ admin_decision.reviewed_by }}
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <strong>Reviewed At:</strong><br>
+                            {{ admin_decision.reviewed_at }}
+                        </div>
+
+                        <div class="col-12 mb-3">
+                            <strong>Admin Notes:</strong><br>
+                            {{ admin_decision.admin_notes|default:"No notes provided." }}
+                        </div>
+                    </div>
+                {% endif %}
+
+            {% else %}
+                {% if admin_decision %}
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <strong>Decision:</strong><br>
+                            {{ admin_decision.get_admin_decision_display }}
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <strong>Reviewed By:</strong><br>
+                            {{ admin_decision.reviewed_by }}
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <strong>Reviewed At:</strong><br>
+                            {{ admin_decision.reviewed_at }}
+                        </div>
+
+                        <div class="col-12 mb-3">
+                            <strong>Admin Notes:</strong><br>
+                            {{ admin_decision.admin_notes|default:"No notes provided." }}
+                        </div>
+                    </div>
+                {% else %}
+                    <p class="mb-0 text-muted">No admin decision recorded yet.</p>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+
+</div>
+{% endblock %}

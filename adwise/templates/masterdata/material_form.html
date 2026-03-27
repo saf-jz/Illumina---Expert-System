@@ -1,0 +1,71 @@
+{% extends "dashboard/base_dashboard.html" %}
+
+{% block title %}Material{% endblock %}
+
+{% block content %}
+<div class="container-fluid pt-4 px-4">
+
+    <div class="bg-secondary rounded p-4">
+
+        <h3 class="mb-4 text-white">
+            {% if object %}Edit Material{% else %}Add Material{% endif %}
+        </h3>
+
+        <form method="post">
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+                <div class="alert alert-danger">
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
+
+            <div class="mb-3">
+                <label class="form-label text-white">Name</label>
+                {{ form.name }}
+                {% if form.name.errors %}
+                    <div class="text-danger mt-1">
+                        {{ form.name.errors }}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label text-white">Complexity Score</label>
+                {{ form.complexity_score }}
+                {% if form.complexity_score.errors %}
+                    <div class="text-danger mt-1">
+                        {{ form.complexity_score.errors }}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label text-white">Description</label>
+                {{ form.description }}
+                {% if form.description.errors %}
+                    <div class="text-danger mt-1">
+                        {{ form.description.errors }}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-check mb-3 text-white">
+                {{ form.active }}
+                <label class="form-check-label">Active</label>
+                {% if form.active.errors %}
+                    <div class="text-danger mt-1">
+                        {{ form.active.errors }}
+                    </div>
+                {% endif %}
+            </div>
+
+            <button type="submit" class="btn btn-danger">Save</button>
+            <a href="{% url 'masterdata:material_list' %}" class="btn btn-secondary">Cancel</a>
+
+        </form>
+
+    </div>
+
+</div>
+{% endblock %}
