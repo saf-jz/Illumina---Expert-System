@@ -50,6 +50,7 @@ Core rule logic and services are located in:
 
 ## Documentation
 Full project report is available in this repository.
+'Project Report.pdf'
 
 ---
 
