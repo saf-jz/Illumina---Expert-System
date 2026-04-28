@@ -49,7 +49,7 @@ Core rule logic and services are located in:
 ---
 
 ## Documentation
-Full project report is available in this repository: [View Project Report](./Project_Report.pdf)
+Full project report is available in this repository: [View Project Report](./Project Report.pdf).
 
 ---
 
