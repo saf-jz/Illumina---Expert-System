@@ -1,5 +1,5 @@
 # Illumina Expert System (Rule-Based Decision Support System)
-A Django-based rule engine for structured quotation decision-making
+> A Django-based rule engine for structured quotation decision-making
 
 ## Overview
 This project is a rule-based decision support system developed using Django to assist in quotation evaluation for advertising services.  
@@ -49,8 +49,7 @@ Core rule logic and services are located in:
 ---
 
 ## Documentation
-Full project report is available in this repository: 
-'Project Report.pdf'
+Full project report is available in this repository: [View Project Report](./Project_Report.pdf)
 
 ---
 
